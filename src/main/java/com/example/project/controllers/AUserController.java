@@ -22,9 +22,13 @@ public class AUserController {
         return AUserRepository.findAll();
     }
 
+
     @PostMapping("/users")
     AUser newUser(@RequestBody AUser newAUser) {
-        return AUserRepository.save(newAUser);
+
+        boolean usernameExists = AUserRepository.existsByLogin(newAUser.getLogin().toLowerCase());
+        if (!usernameExists) return AUserRepository.save(newAUser);
+        return null;
     }
 
 
