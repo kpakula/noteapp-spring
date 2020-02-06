@@ -15,6 +15,7 @@ public class AUserController {
     private AUserRepository AUserRepository;
 
 
+    @CrossOrigin
     @GetMapping("/users")
     List<AUser> all() {
         return AUserRepository.findAll();
