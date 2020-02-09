@@ -16,20 +16,28 @@ public class AUserController {
     @Autowired
     private AUserRepository AUserRepository;
 
-
-//    @CrossOrigin
     @GetMapping("/users")
     List<AUser> all() {
         return AUserRepository.findAll();
     }
 
-//    @CrossOrigin
     @PostMapping("/signin")
     @ResponseBody
     public Boolean login(@RequestBody LoginModel model) {
         return AUserRepository.existsByLoginAndPassword(model.getLogin(), model.getPassword());
     }
 
+    @PostMapping("/signup")
+    @ResponseBody
+    public Boolean register(@RequestBody LoginModel model) {
+        boolean isUser = AUserRepository.existsByLoginAndPassword(model.getLogin(), model.getPassword());
+        if (!isUser) {
+            AUser user = new AUser(model.getLogin(), model.getPassword());
+            AUserRepository.save(user);
+            return true;
+        }
+        return false;
+    }
 
     @PostMapping("/users")
     AUser newUser(@RequestBody AUser newAUser) {
@@ -43,6 +51,7 @@ public class AUserController {
         return AUserRepository.findById(id)
                 .orElseThrow(() -> new AUserNotFoundException(id));
     }
+
 
 
 }
