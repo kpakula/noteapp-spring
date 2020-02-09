@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class AUserController {
 
@@ -16,13 +17,13 @@ public class AUserController {
     private AUserRepository AUserRepository;
 
 
-    @CrossOrigin
+//    @CrossOrigin
     @GetMapping("/users")
     List<AUser> all() {
         return AUserRepository.findAll();
     }
 
-    @CrossOrigin
+//    @CrossOrigin
     @PostMapping("/signin")
     @ResponseBody
     public Boolean login(@RequestBody LoginModel model) {
