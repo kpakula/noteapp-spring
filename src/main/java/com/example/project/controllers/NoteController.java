@@ -21,7 +21,7 @@ public class NoteController {
     private AUserRepository userRepository;
 
 
-    @PostMapping
+    @PostMapping("/notes")
     @ResponseBody
     public Note create(@RequestBody NoteModel noteModel) {
         AUser aUser = userRepository.findByLogin(noteModel.getLogin());
