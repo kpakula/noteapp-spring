@@ -21,9 +21,10 @@ public class Note {
     public Note() {
     }
 
-    public Note(String title, String text) {
+    public Note(String title, String text, AUser aUser) {
         this.title = title;
         this.text = text;
+        this.aUser = aUser;
     }
 
     public int getId() {
