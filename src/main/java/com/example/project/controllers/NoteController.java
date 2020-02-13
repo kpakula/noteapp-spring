@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -31,9 +32,22 @@ public class NoteController {
     }
 
 
-    @PostMapping("/notes/my")
-    public List<Note> myNotes(@RequestBody String login) {
+    @GetMapping("/notes/my/{login}")
+    public List<Note> myNotes(@PathVariable String login) {
         UserA userA = userRepository.findByLogin(login);
         return noteRepository.findAllByUserA(userA);
     }
+
+
+    @DeleteMapping("/notes/{id}")
+    public boolean deleteNote(@PathVariable Long id) {
+        noteRepository.deleteById(id);
+        return true;
+    }
+
+    @GetMapping("/notes/{id}")
+    public Optional<Note> specificNote(@PathVariable Long id) {
+        return noteRepository.findById(id);
+    }
+
 }
