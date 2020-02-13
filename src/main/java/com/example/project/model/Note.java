@@ -1,6 +1,7 @@
 package com.example.project.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Note {
@@ -9,12 +10,15 @@ public class Note {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotNull
     private String title;
 
+    @NotNull
     private String text;
 
     @ManyToOne
     @JoinColumn
+    @NotNull
     private AUser aUser;
 
 

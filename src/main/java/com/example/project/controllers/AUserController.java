@@ -39,12 +39,6 @@ public class AUserController {
         return false;
     }
 
-    @PostMapping("/users")
-    AUser newUser(@RequestBody AUser newAUser) {
-        boolean usernameExists = AUserRepository.existsByLogin(newAUser.getLogin().toLowerCase());
-        if (!usernameExists) return AUserRepository.save(newAUser);
-        return null;
-    }
 
     @GetMapping("/users/{id}")
     AUser showSpecific(@PathVariable Long id) {
