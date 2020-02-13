@@ -38,9 +38,20 @@ public class NoteController {
         return noteRepository.findAllByUserA(userA);
     }
 
+    @PutMapping("/notes/{id}")
+    public Optional<Note> changeNote(@RequestBody NoteModel noteModel, @PathVariable Long id) {
+        return noteRepository.findById(id)
+                .map(note -> {
+                    note.setText(noteModel.getText());
+                    note.setTitle(noteModel.getTitle());
+                    return noteRepository.save(note);
+                });
+    }
+
 
     @DeleteMapping("/notes/{id}")
     public boolean deleteNote(@PathVariable Long id) {
+
         noteRepository.deleteById(id);
         return true;
     }
