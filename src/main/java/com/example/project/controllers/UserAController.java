@@ -1,9 +1,9 @@
 package com.example.project.controllers;
 
 import com.example.project.exceptions.AUserNotFoundException;
-import com.example.project.model.AUser;
+import com.example.project.model.UserA;
 import com.example.project.model.LoginModel;
-import com.example.project.repository.AUserRepository;
+import com.example.project.repository.UserARepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,29 +11,29 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class AUserController {
+public class UserAController {
 
     @Autowired
-    private AUserRepository AUserRepository;
+    private UserARepository UserARepository;
 
     @GetMapping("/users")
-    List<AUser> all() {
-        return AUserRepository.findAll();
+    List<UserA> all() {
+        return UserARepository.findAll();
     }
 
     @PostMapping("/signin")
     @ResponseBody
     public Boolean login(@RequestBody LoginModel model) {
-        return AUserRepository.existsByLoginAndPassword(model.getLogin(), model.getPassword());
+        return UserARepository.existsByLoginAndPassword(model.getLogin(), model.getPassword());
     }
 
     @PostMapping("/signup")
     @ResponseBody
     public Boolean register(@RequestBody LoginModel model) {
-        boolean isUser = AUserRepository.existsByLoginAndPassword(model.getLogin(), model.getPassword());
+        boolean isUser = UserARepository.existsByLoginAndPassword(model.getLogin(), model.getPassword());
         if (!isUser) {
-            AUser user = new AUser(model.getLogin(), model.getPassword());
-            AUserRepository.save(user);
+            UserA user = new UserA(model.getLogin(), model.getPassword());
+            UserARepository.save(user);
             return true;
         }
         return false;
@@ -41,8 +41,8 @@ public class AUserController {
 
 
     @GetMapping("/users/{id}")
-    AUser showSpecific(@PathVariable Long id) {
-        return AUserRepository.findById(id)
+    UserA showSpecific(@PathVariable Long id) {
+        return UserARepository.findById(id)
                 .orElseThrow(() -> new AUserNotFoundException(id));
     }
 

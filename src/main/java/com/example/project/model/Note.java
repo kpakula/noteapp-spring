@@ -19,16 +19,16 @@ public class Note {
     @ManyToOne
     @JoinColumn
     @NotNull
-    private AUser aUser;
+    private UserA userA;
 
 
     public Note() {
     }
 
-    public Note(String title, String text, AUser aUser) {
+    public Note(String title, String text, UserA userA) {
         this.title = title;
         this.text = text;
-        this.aUser = aUser;
+        this.userA = userA;
     }
 
     public int getId() {
@@ -55,11 +55,11 @@ public class Note {
         this.text = text;
     }
 
-    public AUser getaUser() {
-        return aUser;
+    public UserA getUserA() {
+        return userA;
     }
 
-    public void setaUser(AUser aUser) {
-        this.aUser = aUser;
+    public void setUserA(UserA userA) {
+        this.userA = userA;
     }
 }

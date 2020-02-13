@@ -1,9 +1,9 @@
 package com.example.project.controllers;
 
-import com.example.project.model.AUser;
+import com.example.project.model.UserA;
 import com.example.project.model.Note;
 import com.example.project.model.NoteModel;
-import com.example.project.repository.AUserRepository;
+import com.example.project.repository.UserARepository;
 import com.example.project.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,20 +18,22 @@ public class NoteController {
     private NoteRepository noteRepository;
 
     @Autowired
-    private AUserRepository userRepository;
+    private UserARepository userRepository;
 
 
     @PostMapping("/notes")
     @ResponseBody
     public Note create(@RequestBody NoteModel noteModel) {
-        AUser aUser = userRepository.findByLogin(noteModel.getLogin());
-        Note note = new Note(noteModel.getTitle(), noteModel.getText(), aUser);
+        UserA userA = userRepository.findByLogin(noteModel.getLogin());
+        Note note = new Note(noteModel.getTitle(), noteModel.getText(), userA);
         noteRepository.save(note);
         return note;
     }
 
-//    @GetMapping("/notes/my")
-//    List<Note> myNotes() {
-//
-//    }
+
+    @PostMapping("/notes/my")
+    public List<Note> myNotes(@RequestBody String login) {
+        UserA userA = userRepository.findByLogin(login);
+        return noteRepository.findAllByUserA(userA);
+    }
 }
