@@ -25,6 +25,7 @@ mvn install
 ```bash
 # Create note
 POST /notes
+
 # Get all notes for a specific user
 GET /notes/my/{login}
 
@@ -39,7 +40,22 @@ DELETE /notes/{id}
 ```
 
 ### Authentication
+```bash
+# Sign up
+POST /signup
 
+# Sign in
+POST /signin
+```
+
+### User
+```bash
+# Get all users
+GET /users
+
+# Get specific user by id
+GET /users/{id}
+```
 
 
 
@@ -53,3 +69,6 @@ DELETE /notes/{id}
 ```bash
 localhost:8080/
 ```
+
+## Related repository
+https://github.com/kpakula/noteapp-react
