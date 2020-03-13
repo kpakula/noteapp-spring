@@ -19,16 +19,16 @@ public class Note {
     @ManyToOne
     @JoinColumn
     @NotNull
-    private UserA userA;
+    private LoginEntity loginEntity;
 
 
     public Note() {
     }
 
-    public Note(String title, String text, UserA userA) {
+    public Note(String title, String text, LoginEntity loginEntity) {
         this.title = title;
         this.text = text;
-        this.userA = userA;
+        this.loginEntity = loginEntity;
     }
 
     public Long getId() {
@@ -55,11 +55,11 @@ public class Note {
         this.text = text;
     }
 
-    public UserA getUserA() {
-        return userA;
+    public LoginEntity getLoginEntity() {
+        return loginEntity;
     }
 
-    public void setUserA(UserA userA) {
-        this.userA = userA;
+    public void setLoginEntity(LoginEntity loginEntity) {
+        this.loginEntity = loginEntity;
     }
 }
