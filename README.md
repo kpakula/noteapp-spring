@@ -20,3 +20,36 @@ mvn clean
 # Install project artifacts
 mvn install
 ```
+## Endpoints
+### Note
+```bash
+# Create note
+POST /notes
+# Get all notes for a specific user
+GET /notes/my/{login}
+
+# Get specific note by id
+GET /notes/{id}
+
+# Update a specific note 
+PUT /notes/{id}
+
+# Delete specific note by id
+DELETE /notes/{id}
+```
+
+### Authentication
+
+
+
+
+
+
+## Used technologies
+* Spring Boot
+* PostgreSQL
+
+## Default host
+```bash
+localhost:8080/
+```
