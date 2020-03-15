@@ -16,6 +16,9 @@ public class Note {
     @NotNull
     private String text;
 
+    @NotNull
+    private String color;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     @NotNull
@@ -25,10 +28,19 @@ public class Note {
     public Note() {
     }
 
-    public Note(String title, String text, LoginEntity loginEntity) {
+    public Note(String title, String text, LoginEntity loginEntity, String color) {
         this.title = title;
         this.text = text;
         this.loginEntity = loginEntity;
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public Long getId() {

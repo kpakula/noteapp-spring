@@ -26,7 +26,7 @@ public class NoteController {
     @ResponseBody
     public Note create(@RequestBody NoteModel noteModel) {
         LoginEntity loginEntity = userRepository.findByLogin(noteModel.getLogin());
-        Note note = new Note(noteModel.getTitle(), noteModel.getText(), loginEntity);
+        Note note = new Note(noteModel.getTitle(), noteModel.getText(), loginEntity, noteModel.getColor());
         noteRepository.save(note);
         return note;
     }
