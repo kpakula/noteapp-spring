@@ -16,7 +16,7 @@ public class Note {
     @NotNull
     private String text;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     @NotNull
     private LoginEntity loginEntity;
